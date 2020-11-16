@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.require_version ">= 2.2.10"
+
+Vagrant.configure("2") do |config|
+
+   config.vm.synced_folder ".", "/vagrant", disabled: true
+
+   config.ssh.insert_key = false
+
+   config.vm.define "js-code" do |code|
+      code.vm.box = "launchquickly/focal-desktop64"
+      code.vm.box_version = "0.0.6"
+
+      code.vm.hostname = "js-code"
+
+      code.vm.network :private_network, ip: "10.205.0.20"
+
+      code.vm.provider "virtualbox" do |vb|
+         vb.gui = true
+         vb.memory = 4096
+         vb.cpus = 2
+         vb.customize ["modifyvm", :id, "--vram", "128"]
+         vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+      end
+
+      # install vscode
+      code.vm.provision "shell", inline: <<-SHELL
+         snap install code --classic
+      SHELL
+
+      # checkout javascript repository
+      code.vm.provision "shell", inline: <<-SHELL
+         git clone https://github.com/launchquickly/javascript.git
+         cd javascript
+         # change repository remote access from https to ssh
+         git remote set-url origin git@github.com:launchquickly/javascript.git
+      SHELL
+   end
+end
