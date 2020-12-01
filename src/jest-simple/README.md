@@ -31,6 +31,10 @@ add.test.js contains an example of using [expect](https://jestjs.io/docs/en/expe
 expect(a + b).not.toBe(0);
 ```
 
+### Undefined, null, falsy and truthy matching
+
+TODO
+
 ### Comparing numbers
 
 sum.test.js contains an examples of using [expect](https://jestjs.io/docs/en/expect#expectvalue) and various matchers to perform comparisons on numbers such as >, <, >= and <=, as well as [toBeCloseTo](https://jestjs.io/docs/en/expect#tobeclosetonumber-numdigits) for use with floating point number comparison.
@@ -38,6 +42,11 @@ sum.test.js contains an examples of using [expect](https://jestjs.io/docs/en/exp
 ### Matching strings
 
 msg.test.js contains examples of using [expect](https://jestjs.io/docs/en/expect#expectvalue) and [toMatch](https://jestjs.io/docs/en/expect#tomatchregexp--string) to check strings using regular expressions.
+
+### Check contents of arrays and iterables
+
+add.test.js contains an example of using [expect](https://jestjs.io/docs/en/expect#expectvalue) and [toContain](https://jestjs.io/docs/en/expect#tocontainitem) to test whether an array or iterable contains an item and [expect.arrayContaining](https://jestjs.io/docs/en/expect#expectarraycontainingarray) and [expect.not.arrayContaining](https://jestjs.io/docs/en/expect#expectnotarraycontainingarray) to verify whether an 
+array is or is not a subset of another array.
 
 ### Exception detection
 
